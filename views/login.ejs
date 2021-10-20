@@ -1,0 +1,109 @@
+<%- include('header') %>
+
+<%- include('nav')  %>
+
+<div class="container mb-3">
+    <h1 class="text-center mt-5"><i class="fas fa-sign-in-alt"></i></h1>
+    <p class="text-center lead fs-6">Acessar o sistema</p>
+
+    <div class="d-flex justify-content-center">
+        <div class="col-lg-8 col-sm-12 col-md-12 col-xs-12 col mt-2">
+
+            <!-- Group message -->
+            <%- include('utilities/message', {...errors}); %>
+   
+            <div class="row">
+            
+
+                <div class="col-12">
+
+                    <div class="card text-white bg-dark">
+
+                        <div class="card-header">
+                            <h4 class="card-title">Login</h4>
+                            <p class="card-subtitle fw-light">Acessar o sistema</p>
+                        </div>
+
+                        <div class="card-body">
+
+                            <form action="/login/access" method="POST" autocomplete="off">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input 
+                                    type="email" 
+                                    name="email" 
+                                    class="form-control <% if (errors.length > 0) { %>
+                                        <% errors.forEach(error => { %>
+                                         <% if (error.param == 'email') { %>
+                                            is-invalid
+                                         <% } %>
+                                        <% }) %>
+                                    <% } %>" 
+                                    id="email" 
+                                    value="<% if (dataForm) { %> <%= dataForm.email %> <% } %>" required>
+
+
+                                        <!-- Message  -->
+                                        <% if (errors.length > 0) { %>                                    
+
+                                            <% errors.forEach(error => { %>
+                                                <% if (error.param == 'email') { %>
+                                                    <div class="invalid-feedback">
+                                                        <%= error.msg %> <br>
+                                                      </div>                                             
+                                                <% } %>                                       
+                                            <% }) %>
+    
+                                        <% } %>
+                                    
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Password</label>
+                                    <input 
+                                    type="password" 
+                                    name="password" 
+                                    class="form-control <% if (errors.length > 0) { %>
+                                        <% errors.forEach(error => { %>
+                                         <% if (error.param == 'password') { %>
+                                            is-invalid
+                                         <% } %>
+                                        <% }) %>
+                                    <% } %>" 
+                                    id="password" 
+                                    value="<% if (dataForm) { %> <%= dataForm.password %> <% } %>" required>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                                    <!-- Message  -->
+                                    <% if (errors.length > 0) { %>                                    
+
+                                        <% errors.forEach(error => { %>
+                                            <% if (error.param == 'password') { %>
+                                                <div class="invalid-feedback">
+                                                    <%= error.msg %> <br>
+                                                  </div>                                             
+                                            <% } %>                                       
+                                        <% }) %>
+
+                                    <% } %>
+                                </div>
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" name="logged" class="form-check-input" id="logged">
+                                    <label class="form-check-label" for="logged">Permanecer conectado?</label>
+                                </div>
+                                <button type="submit" class="btn btn-light float-end">Acessar o sistema</button>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('footer') %>

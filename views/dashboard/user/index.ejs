@@ -1,0 +1,83 @@
+<%- include('../../header') %>
+
+<%- include('../../nav')  %>
+
+<div class="container mb-3">
+
+  <h1 class="text-center mt-5"><i class="fas fa-user"></i></h1>
+  <p class="text-center lead fs-6">Usuários.</p>
+
+  <div class="d-flex justify-content-center">
+    <div class="col-lg-8 col-sm-12 col-md-12 col-xs-12 col-12">
+      <% if (user.length > 0 ) { %>
+
+
+        <% user.forEach(item => { %>
+            
+          <% if (item.level === 1) { %>
+            <div class="row my-3">
+              <div class="col-12">
+                <a href="/painel-de-controle/novo/usuarios/" class="btn btn-sm btn-dark float-end">Novo usuário <i
+                    class="fas fa-plus-circle"></i></a>
+              </div>
+            </div>
+            <% } %>
+
+          <% }) %>
+     
+
+      <div class="table-responsive">
+        <table class="table">
+
+          <thead class="text-center">
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Nivel</th>
+              <th>Email</th>
+              <th colspan="3">Ação</th>
+            </tr>
+          </thead>
+
+          <tbody class="text-center">
+            <% user.forEach(item => { %>
+            <tr>
+              <td><%= item.firstName %> </td>
+              <td><%= item.lastName %> </td>
+              <td><% if (item.level === 1) { %>Admin<% } else { %>Básico<% } %> </td>
+              <td><%= item.email %> </td>
+              <td> <a href="/painel-de-controle/editar/usuarios/<%= item._id %>" class="btn btn-sm btn-primary"> <i
+                    class="far fa-edit" title="Editar"></i> </a> </td>
+              <td>
+                <form action="/painel-de-controle/excluir/usuarios/" method="post">
+                  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                  <input type="hidden" name="_id" value="<%= item._id %>">
+                  <button class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash-alt"
+                      title="Deletar"></i></button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+
+          </tbody>
+
+        </table>
+      </div>
+
+      <% } else  { %>
+
+        <div class="row my-3">
+            <div class="alert alert-info">
+              <i class="fas fa-info-circle"></i> Não existem usuários cadastrados no momento!
+            </div>   
+            <a href="/painel-de-controle/novo/usuarios/" class="btn btn-dark float-end">Cadastrar usuários <i class="fas fa-question-circle"></i></a>
+        </div>
+
+      <% } %>       
+
+    </div>
+  </div>
+</div>
+
+
+<%- include('../../footer') %>

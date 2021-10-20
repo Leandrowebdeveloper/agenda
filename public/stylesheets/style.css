@@ -1,0 +1,7 @@
+td tr > a {
+  cursor: pointer;
+} 
+
+.card {
+  box-shadow: 2px 2px 6px #888888;
+}

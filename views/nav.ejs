@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+
+       
+        <% if (!user) { %>
+
+            <a class="navbar-brand" href="/login"><i class="far fa-calendar-alt"></i> Agenda</a>
+
+            <ul class="navbar-nav ms-2">
+                <li class="nav-item">
+                    <a class="btn btn-sm btn-outline-secondary" href="/login">login</a>
+                </li>
+            </ul>
+            
+        <% } else { %>
+
+            <a class="navbar-brand" href="/painel-de-controle/contato"><i class="far fa-calendar-alt"></i> Agenda</a>
+
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="btn btn-sm btn-outline-secondary" href="/painel-de-controle">Painel de controle</a>
+                </li>
+            </ul>
+         
+            <ul class="navbar-nav ms-2">
+                <li class="nav-item">
+                    <a class="btn btn-sm btn-outline-secondary" href="/sair">Sair</a>
+                </li>
+            </ul>
+
+
+        <% } %>
+        
+ 
+         
+
+    </div>
+</nav>

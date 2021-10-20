@@ -1,0 +1,173 @@
+<%- include('../../header') %>
+
+<%- include('../../nav')  %>
+
+<div class="container mb-3">
+    <h1 class="text-center mt-5"><i class="<%= dataHeader.header %>"></i> </h1>
+    <p class="text-center lead fs-6"><%= dataHeader.subHeader %> </p>
+
+    <div class="d-flex justify-content-center">
+        <div class="col-lg-8 col-sm-12 col-md-12 col-xs-12 col mt-2">
+
+             <!-- Group message -->
+             <%- include('../../utilities/message', {...errors}); %>
+
+            <div class="row">
+
+                <div class="col-12">
+
+                    <div class="card text-white bg-dark">
+
+                        <div class="card-header">
+                            <h4 class="card-title"><%= dataHeader.title %> </h4>
+                            <p class="card-subtitle fw-light"><%= dataHeader.subTitle %> </p>
+                        </div>
+
+                        <div class="card-body">
+
+                            <form action="<%= dataHeader.url %> " method="POST" autocomplete="off">
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                                <% if (dataHeader.id) { %>
+                                    <input type="hidden" name="_id" value="<%= dataHeader.id %>">  
+                                <% } %>                               
+                                <div class="mb-3">
+                                    <label for="firstName" class="form-label">Nome</label>
+                                    <input 
+                                    type="text" 
+                                    name="firstName" 
+                                    class="form-control <% if (errors.length > 0) { %>
+                                        <% errors.forEach(error => { %>
+                                         <% if (error.param == 'firstName') { %>
+                                            is-invalid
+                                         <% } %>
+                                        <% }) %>
+                                    <% } %>" 
+                                    id="firstName" 
+                                    value="<% if (dataForm) { %><%= dataForm.firstName %><% } %>" required>
+
+
+                                        <!-- Message  -->
+                                        <% if (errors.length > 0) { %>                                    
+
+                                            <% errors.forEach(error => { %>
+                                                <% if (error.param == 'firstName') { %>
+                                                    <div class="invalid-feedback">
+                                                        <%= error.msg %> <br>
+                                                      </div>                                             
+                                                <% } %>                                       
+                                            <% }) %>
+    
+                                        <% } %>
+                                    
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="LastName" class="form-label">Sobrenome</label>
+                                    <input 
+                                    type="text" 
+                                    name="lastName" 
+                                    class="form-control <% if (errors.length > 0) { %>
+                                        <% errors.forEach(error => { %>
+                                         <% if (error.param == 'lastName') { %>
+                                            is-invalid
+                                         <% } %>
+                                        <% }) %>
+                                    <% } %>" 
+                                    id="lastName" 
+                                    value="<% if (dataForm) { %><%= dataForm.lastName %><% } %>" required>
+
+
+                                        <!-- Message  -->
+                                        <% if (errors.length > 0) { %>                                    
+
+                                            <% errors.forEach(error => { %>
+                                                <% if (error.param == 'lastName') { %>
+                                                    <div class="invalid-feedback">
+                                                        <%= error.msg %> <br>
+                                                      </div>                                             
+                                                <% } %>                                       
+                                            <% }) %>
+    
+                                        <% } %>
+                                    
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input 
+                                    type="email" 
+                                    name="email" 
+                                    class="form-control <% if (errors.length > 0) { %>
+                                        <% errors.forEach(error => { %>
+                                         <% if (error.param == 'email') { %>
+                                            is-invalid
+                                         <% } %>
+                                        <% }) %>
+                                    <% } %>" 
+                                    id="email" 
+                                    value="<% if (dataForm) { %><%= dataForm.email %><% } %>" >
+
+
+                                        <!-- Message  -->
+                                        <% if (errors.length > 0) { %>                                    
+
+                                            <% errors.forEach(error => { %>
+                                                <% if (error.param == 'email') { %>
+                                                    <div class="invalid-feedback">
+                                                        <%= error.msg %> <br>
+                                                      </div>                                             
+                                                <% } %>                                       
+                                            <% }) %>
+    
+                                        <% } %>
+                                    
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tel" class="form-label">Telefone</label>
+                                    <input 
+                                    type="tel" 
+                                    name="tel" 
+                                    class="form-control <% if (errors.length > 0) { %>
+                                        <% errors.forEach(error => { %>
+                                         <% if (error.param == 'tel') { %>
+                                            is-invalid
+                                         <% } %>
+                                        <% }) %>
+                                    <% } %>" 
+                                    id="tel" 
+                                    value="<% if (dataForm) { %><%= dataForm.tel %><% } %>">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                                    <!-- Message  -->
+                                    <% if (errors.length > 0) { %>                                    
+
+                                        <% errors.forEach(error => { %>
+                                            <% if (error.param == 'tel') { %>
+                                                <div class="invalid-feedback">
+                                                    <%= error.msg %> <br>
+                                                  </div>                                             
+                                            <% } %>                                       
+                                        <% }) %>
+
+                                    <% } %>
+                                </div>
+
+                                <button type="submit" class="btn btn-info text-light float-end">Criar conta</button>
+                                
+                            </form>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include('../../footer') %>

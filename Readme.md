@@ -8,6 +8,3 @@ Projeto para fins de aprendizado
 * Express
 * Mongodb
 * Bootstrap
-
-LINK: https://agendaleandro.ml/
-
